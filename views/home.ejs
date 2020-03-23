@@ -1,0 +1,38 @@
+<%- contentFor('body') %>
+<div class="jumbotron text-center">
+    <form method="GET">
+    <label from="to">De:</label>
+    <select id="to">
+        <% for(param of params) { %>
+        <option value="<%=param.to %>"> <%=param.to %></option>
+        <%
+                }
+                %>
+    </select>
+    <label from="from">Para:</label>
+
+    <select id="from">
+        <% for(param of params) { %>
+        <option value="<%=param.from %>"> <%=param.from %></option>
+        <%
+            }
+            %>
+    </select>
+    <a id='button' class="btn btn-submit" >Pesquisar</a>
+</form>
+</div>
+<script>
+var to = document.getElementById('to').value
+var from = document.getElementById('from').value;
+
+    var getPage = () => {
+    var url = "/quote/"+ to + "/" + from; 
+    console.log(url)
+    window.open =  url;
+    document.getElementById('button').href = url;
+    }
+    
+
+
+
+</script>
