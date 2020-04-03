@@ -1,37 +1,54 @@
 <%- contentFor('body') %>
+<% if(sucess){ %>
+<script>
+    alert("<%=sucess %>");
+</script>
+<% } %>
 <div class="jumbotron text-center">
-    <form method="GET">
-    <label from="to">De:</label>
-    <select id="to">
-        <% for(param of params) { %>
-        <option value="<%=param.to %>"> <%=param.to %></option>
-        <%
+    <form method="get">
+        <label from="from">De:</label>
+        <select id="from" onchange="functionTo()">
+            <option value="0"> De</option>
+            <% for(param of params) { %>
+            <option value="<%=param %>"> <%=param %></option>
+            <%
                 }
                 %>
-    </select>
-    <label from="from">Para:</label>
+        </select>
+        <label from="to">Para:</label>
 
-    <select id="from">
-        <% for(param of params) { %>
-        <option value="<%=param.from %>"> <%=param.from %></option>
-        <%
+        <select id="to" onchange="functionFrom()">
+            <option value="0"> Para</option>
+            <% for(param of params) { %>
+            <option value="<%=param %>"> <%=param%></option>
+            <%
             }
             %>
-    </select>
-    <a id='button' class="btn btn-submit" >Pesquisar</a>
-</form>
+        </select>
+        <a href="#" id='button' class="btn btn-submit">Pesquisar</a>
+    </form>
 </div>
 <script>
-var to = document.getElementById('to').value
-var from = document.getElementById('from').value;
 
-    var getPage = () => {
-    var url = "/quote/"+ to + "/" + from; 
-    console.log(url)
-    window.open =  url;
-    document.getElementById('button').href = url;
+    function functionTo() {
+        var to = document.getElementById('to').value
+        var from = document.getElementById('from').value;
+
+
+        var url = "/quote/" + to + "/" + from;
+        console.log(url)
+        document.getElementById('button').href = url.toString();
+
     }
-    
+    function functionFrom() {
+        var to = document.getElementById('to').value
+        var from = document.getElementById('from').value;
+
+        var url = "/quote/" + to + "/" + from;
+        console.log(url)
+        document.getElementById('button').href = url.toString();
+
+    }
 
 
 
